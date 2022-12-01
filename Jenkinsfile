@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage ('Docker Build'){
             steps{
-                sh "docker build -t routeg/website:${env.BUILD_NUMBER} ."
+                sh "docker build -t routeg/website:${env.BUILD_NUMBER}.${env.GIT_COMMIT} ."
             }
         }
 
