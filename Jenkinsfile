@@ -41,7 +41,7 @@ pipeline {
         
             
             steps{
-                 {
+                 
                     sh 'docker push routeg/website:${env.BUILD_NUMBER}'
                 }
             }
