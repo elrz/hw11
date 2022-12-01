@@ -6,6 +6,10 @@ pipeline {
         timestamps()
     }
 
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-registry')
+    }
+
 
 
     parameters {
@@ -21,8 +25,15 @@ pipeline {
             }
         }
 
+        stage("Login"){
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+
+
         stage ('Docker push'){
-             when {
+            when {
                 expression {
                     return params.SKIP_PUBLISH_IMAGE == false;
                 }
@@ -30,7 +41,7 @@ pipeline {
         
             
             steps{
-                withDockerRegistry(url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub-registry') {
+                 {
                     sh 'docker push routeg/website:${env.BUILD_NUMBER}'
                 }
             }
