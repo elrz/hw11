@@ -32,7 +32,7 @@ pipeline {
         }
 
 
-        stage ('Docker push'){
+        stage ('Docker_push'){
             when {
                 expression {
                     return params.SKIP_PUBLISH_IMAGE == false;
