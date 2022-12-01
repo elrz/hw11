@@ -19,7 +19,7 @@ pipeline {
 
 
     stages {
-        stage ('Docker Build'){
+        stage ('Docker_Build'){
             steps{
                 sh "docker build -t routeg/website:${env.BUILD_NUMBER} ."
             }
