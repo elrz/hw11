@@ -31,7 +31,7 @@ pipeline {
             
             steps{
                 withDockerRegistry(url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub-registry') {
-                    sh 'docker push routeg/java-sample:${env.BUILD_NUMBER}'
+                    sh 'docker push routeg/website:${env.BUILD_NUMBER}'
                 }
             }
         }    
