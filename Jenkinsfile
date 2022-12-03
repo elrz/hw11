@@ -25,26 +25,29 @@ pipeline {
             }
         }
 
-        stage("Dockerhub_Login"){
+        stage('Dockerhub_Login'){
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
 
 
-        stage ('Docker_push'){
+        stage ('Push image to Dockerhub'){
             when {
                 expression {
                     return params.SKIP_PUBLISH_IMAGE == false;
                 }
             }
-        
-            
             steps{
-                 
-                 sh "docker push routeg/website:${env.BUILD_NUMBER}"
+                sh "docker push routeg/website:${env.BUILD_NUMBER}"
             }
             
+        }
+
+        stage ('Delete a local docker image') {
+            steps{
+                sh " docker rmi routeg/website:${env.BUILD_NUMBER}"
+            }
         }    
     } 
 
