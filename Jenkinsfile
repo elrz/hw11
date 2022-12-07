@@ -48,8 +48,21 @@ pipeline {
             steps{
                 sh " docker rmi routeg/website:${env.BUILD_NUMBER}"
             }
-        }    
-    } 
+        }
+
+        stage('K8S - start deployment and service') {
+            steps {
+          withKubeConfig(credentialsId: 'kube_config', namespace: 'jenkins') {
+          sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
+          sh 'kubectl apply -f service.yaml'
+                }
+             }
+         }
+
+
+    }
+
+
 
 }    
 
