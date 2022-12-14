@@ -4,17 +4,17 @@ clusters:
 - cluster:
     insecure-skip-tls-verify: true
     server: https://192.168.49.2:8443
-  name: minikube2
+  name: minikube
 users:
 - name: jenkins
   user:
     token: eyJhbGciOiJSUzI1NiIsImtpZCI6Im52TjdBQzRQd1ZPcU9GOU90YWk2dFd3Y0NPN0xsYU81SlRYbHNZc3hxRG8ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJqZW5raW5zIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImplbmtpbnMtdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiamVua2lucy1zYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijk5MzYyMDUyLTY3MDItNDFmOS05MDIyLWZjYzhmZjk2NGI3NiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpqZW5raW5zOmplbmtpbnMtc2EifQ.mbiwrm3K8t24i_22ieaBl4nn-JI02nNWj_G3ysB7ofWahxajji9reNVHkKspEKXfdY9H409tIozTKOrc9emUbiqXfEz-qxko7AY5Y8pK5lF6xKTZ-NJ8gcjUZ9ZrN7k3GV7K_J7CJiBQ_0fm3O0VyyAeA5giol5peGrHqA2cNMGDlFPdD_306HE9vt_tNOJDeJMIUyqu6QgfmmoXl49-4IZN_jj-EQAlhN0wT5Lo4g4Y3ZnuptPUip5bgfxv4Q-gdUyfxnd8L0Y9K7f5n5yn32dGsvSVxft1lh9igEclFYpqb8bUUr1GiucUaYWRSxaDLTAu-JJxZbAQDF41pHuiPw
 contexts:
 - context:
-    cluster: minikube2
+    cluster: minikube
     user: jenkins
     namespace: jenkins
-  name: minikube2
-current-context: minikube2
+  name: minikube
+current-context: minikube
 preferences: {}
 
