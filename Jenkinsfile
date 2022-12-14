@@ -14,6 +14,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'SKIP_PUBLISH_IMAGE', defaultValue: false)
+        booleanParam(name: 'SKIP_LOCAL_DELETE_IMAGES', defaultValue: false)
         booleanParam(name: 'SKIP_DEPLOYMENT_K8S', defaultValue: false)
     }
 
@@ -46,6 +47,12 @@ pipeline {
         }
 
         stage ('Delete a local docker image') {
+            when {
+                expression {
+                    return params.SKIP_LOCAL_DELETE_IMAGES == false;
+                }
+            }
+
             steps{
                 sh " docker rmi routeg/website:${env.BUILD_NUMBER}"
             }
