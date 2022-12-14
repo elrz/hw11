@@ -14,6 +14,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'SKIP_PUBLISH_IMAGE', defaultValue: false)
+        booleanParam(name: 'SKIP_DEPLOYMENT_K8S', defaultValue: false)
     }
 
 
@@ -38,7 +39,7 @@ pipeline {
                     return params.SKIP_PUBLISH_IMAGE == false;
                 }
             }
-            steps{
+            steps {
                 sh "docker push routeg/website:${env.BUILD_NUMBER}"
             }
             
@@ -51,6 +52,11 @@ pipeline {
         }
 
         stage('K8S - start deployment and service') {
+            when {
+                expression{
+                    return params.SKIP_DEPLOYMENT_K8S == false
+                }
+            }
             steps {
           withKubeConfig(credentialsId: 'kube_config', namespace: 'jenkins') {
           sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
